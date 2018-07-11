@@ -1,0 +1,11 @@
+{
+    "id": "hikage",
+    "name": "Hikage Widget",
+    "description": "",
+    "keywords": [],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "1.2.7"
+    },
+    "screenshots": ["assets/module_image.png"]
+}
