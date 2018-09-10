@@ -2,13 +2,17 @@
 /**
  * Module.
  */
+
 namespace humhub\modules\hikage;
 
 use Yii;
 use yii\helpers\Url;
 
+use humhub\models\Setting;
 /**
  * Module.
+ * 
+ * @version 0.0.1
  */
 class Module extends \humhub\components\Module
 {
@@ -18,10 +22,14 @@ class Module extends \humhub\components\Module
         return Url::to(['/hikage/config/index']);
     }
 
+    /**
+     * 
+     * @param \yii\base\ActionEvent $event
+     */
     public static function onTopMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => 'About',
+            'label' => 'マニュアル',
             'url' => Url::to(['/hikage/page/view', 'id' => 'about']),
             'icon' => '<i class="fa fa-info-circle"></i>',
             'isActive' => self::isActive(),
@@ -48,6 +56,13 @@ class Module extends \humhub\components\Module
         }
 
         return true;
+    }
+
+    public function enable()
+    {
+        parent::enable();
+
+        Setting::Set('daysOfStore', 30, 'hikage');
     }
 }
 

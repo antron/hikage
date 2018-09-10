@@ -9,9 +9,14 @@ use yii\web\AssetBundle;
 
 /**
  * Assets.
+ * 
+ * @version 0.0.1
  */
 class Assets extends AssetBundle
 {
+    public $css = [
+        'hikage.css',
+    ];
 
     /**
      * init.

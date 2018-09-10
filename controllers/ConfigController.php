@@ -2,22 +2,23 @@
 
 namespace humhub\modules\hikage\controllers;
 
-use humhub\modules\user\models\ProfileField;
+use Yii;
+use humhub\models\Setting;
 
 class ConfigController extends \humhub\modules\admin\components\Controller
 {
 
     public function actionIndex()
     {
+        $model = new \humhub\modules\hikage\models\deletepostsConfigureForm();
 
-        $kako = date('Y-m-d', strtotime('-2 week', time()));
-
-        $posts = \humhub\modules\post\models\Post::find()->where(['<', 'created_at', $kako])->all();
-
-        foreach ($posts as $post) {
-            $post->delete();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            Setting::Set('daysOfStore', $model->days, 'hikage');
         }
+        
+        $model->days = Setting::Get('daysOfStore', 'hikage');
 
-        return $this->render('index', []);
+        return $this->render('index', ['model' => $model]);
     }
+
 }

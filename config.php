@@ -14,7 +14,10 @@ return [
         [
             'class' => TopMenu::className(),
             'event' => TopMenu::EVENT_INIT,
-            'callback' => array('humhub\modules\hikage\Module', 'onTopMenuInit')
+            'callback' => [
+                'humhub\modules\hikage\Module',
+                'onTopMenuInit'
+            ]
         ],
         [
             'class' => CronController::className(),

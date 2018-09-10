@@ -3,6 +3,7 @@
 namespace humhub\modules\hikage\controllers;
 
 use Yii;
+use humhub\models\Setting;
 
 class PageController extends \humhub\components\Controller
 {
@@ -11,7 +12,10 @@ class PageController extends \humhub\components\Controller
     {
         $page = Yii::$app->request->get('id');
 
-        return $this->render($page);
-    }
+        $appName = Yii::$app->name;
 
+        $daysOfStore = Setting::Get('daysOfStore', 'hikage');
+
+        return $this->render($page, ['appName' => $appName,'daysOfStore' => $daysOfStore]);
+    }
 }
