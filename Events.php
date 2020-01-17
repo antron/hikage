@@ -20,7 +20,7 @@ class Events
     /**
      * クーロン実行.
      */
-    public static function onCronRun($event)
+    public static function onDailyCron($event)
     {
         $controller = $event->sender;
 
